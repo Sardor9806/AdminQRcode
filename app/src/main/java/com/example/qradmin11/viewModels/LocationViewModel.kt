@@ -55,6 +55,20 @@ class LocationViewModel:ViewModel() {
         })
     }
 
+    fun deleteLocation(locationentity: Locationentity) {
+
+        locationDb.child(locationentity.login!!).setValue(null)
+            .addOnCompleteListener {
+                if(it.isSuccessful)
+                {
+                    d("sardor","qo`shildi")
+                }else
+                {
+                    d("sardor","nimadir bo`ldiii")
+                }
+            }
+    }
+
 
 
 }

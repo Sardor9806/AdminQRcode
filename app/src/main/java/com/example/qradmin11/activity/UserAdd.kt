@@ -76,6 +76,7 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
         alertDialog.setMessage("O`chirasizmi?")
         alertDialog.setPositiveButton("Ha"){ dialogInterface: DialogInterface, i: Int ->
             userViewModel.deleteUser(user)
+            locationViewModel.deleteLocation(Locationentity(login = user.login))
         }
         alertDialog.setNegativeButton("Yo`q"){ dialogInterface: DialogInterface, i: Int -> }
         alertDialog.show()
