@@ -5,9 +5,10 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.qradmin11.MapsActivity
+import com.example.qradmin11.googleMap.MapsActivity
 import com.example.qradmin11.adapter.LocationAdapter
 import com.example.qradmin11.databinding.ActivityUserQayerdaBinding
+
 import com.example.qradmin11.entity.Locationentity
 import com.example.qradmin11.viewModels.LocationViewModel
 
@@ -37,6 +38,9 @@ class UserQayerda : AppCompatActivity(), LocationAdapter.locationClick {
     }
 
     override fun onclik(user: Locationentity) {
-        startActivity(Intent(this, MapsActivity::class.java))
+        val intent=Intent(this,MapsActivity::class.java)
+        intent.putExtra("x",user.x)
+        intent.putExtra("y",user.y)
+        startActivity(intent)
     }
 }
