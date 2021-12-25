@@ -15,8 +15,8 @@ tools:context=".activity.SelectUserChatting">
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/materialCardView4"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
+        android:overScrollMode="never"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_user_chatting" />
 
@@ -35,7 +35,7 @@ tools:context=".activity.SelectUserChatting">
             android:id="@+id/message_write_edt"
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:paddingStart="8dp"
+            android:paddingStart="16dp"
             android:hint="Xabar yuborish..."
             android:inputType="textCapSentences"
             android:background="@null"
