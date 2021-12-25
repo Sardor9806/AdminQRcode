@@ -41,6 +41,11 @@
             android:screenOrientation="portrait"
             android:name=".activity.UserQayerda"
             android:exported="false" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".activity.UserChat"
+            android:exported="false" />
         <activity
             android:screenOrientation="portrait"
             android:name=".activity.UserAdd"

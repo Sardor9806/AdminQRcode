@@ -6,6 +6,7 @@ import com.example.qradmin11.databinding.ActivityUserChatBinding
 
 class UserChat : AppCompatActivity() {
     lateinit var binding: ActivityUserChatBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         title="Foydalanuvchi bilan Chat"
         super.onCreate(savedInstanceState)

@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/activity_maps.xml" value="0.29322916666666665" />
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/activity_user_add.xml" value="0.29322916666666665" />
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/activity_user_chat.xml" value="0.29322916666666665" />
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/activity_user_qayerda.xml" value="0.29322916666666665" />
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/item_domen.xml" value="0.29322916666666665" />
+        <entry key="..\:/AdminQRcode/app/src/main/res/layout/item_user.xml" value="0.29322916666666665" />
         <entry key="..\:/QRAdmin11/app/src/main/res/layout/activity_domen_add.xml" value="0.29322916666666665" />
       </map>
     </option>
