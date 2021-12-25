@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.qradmin11.adapter.UserChattingAdapter
+import com.example.qradmin11.adapter.MessageAdapter
 import com.example.qradmin11.databinding.ActivitySelectUserChattingBinding
 import com.example.qradmin11.entity.UserChatAddEntity
 import com.example.qradmin11.viewModels.UserChatViewModel
@@ -19,15 +19,16 @@ class SelectUserChatting : AppCompatActivity() {
         ViewModelProviders.of(this).get(UserChatViewModel::class.java)
     }
 
-    private val adapter:UserChattingAdapter by lazy { UserChattingAdapter() }
+    lateinit var adapter:MessageAdapter
 
-    private var messageArray:MutableList<UserChatAddEntity> = mutableListOf()
+    private var messageArray:ArrayList<UserChatAddEntity> = arrayListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectUserChattingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         title = intent.getStringExtra("login")
+        adapter= MessageAdapter(this,messageArray)
         userChatViewModel.readLocation(intent.getStringExtra("login").toString())
         readMessage()
         sendMessage()
@@ -42,7 +43,7 @@ class SelectUserChatting : AppCompatActivity() {
                 it.forEach {
                     messageArray.add(it)
                 }
-                adapter.sendData(messageArray)
+                adapter.notifyDataSetChanged()
             })
     }
 
