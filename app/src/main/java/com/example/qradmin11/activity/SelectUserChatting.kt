@@ -36,7 +36,10 @@ class SelectUserChatting : AppCompatActivity() {
     }
 
     private fun readMessage() {
+
+        binding.messageRecyclerView.setHasFixedSize(true)
         binding.messageRecyclerView.adapter=adapter
+
         binding.messageRecyclerView.layoutManager=LinearLayoutManager(this)
             userChatViewModel.message.observe(this, Observer {
                 messageArray.clear()
@@ -44,6 +47,7 @@ class SelectUserChatting : AppCompatActivity() {
                     messageArray.add(it)
                 }
                 adapter.notifyDataSetChanged()
+                binding.messageRecyclerView.scrollToPosition(messageArray.size-1)
             })
     }
 
