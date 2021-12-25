@@ -14,18 +14,28 @@ import com.example.qradmin11.databinding.ActivityUserAddBinding
 import com.example.qradmin11.databinding.AddUserDialogBinding
 import com.example.qradmin11.entity.Locationentity
 import com.example.qradmin11.entity.User
+import com.example.qradmin11.entity.UserChatAddEntity
 import com.example.qradmin11.viewModels.LocationViewModel
+import com.example.qradmin11.viewModels.UserChatViewModel
 import com.example.qradmin11.viewModels.UserViewModel
 
 class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
 
     lateinit var binding: ActivityUserAddBinding
 
-    private  val userViewModel: UserViewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
+    private val userViewModel: UserViewModel by lazy {
+        ViewModelProviders.of(this).get(UserViewModel::class.java)
+    }
 
-    private val adapter:UserAdapter by lazy { UserAdapter(this) }
+    private val adapter: UserAdapter by lazy { UserAdapter(this) }
 
-    private val locationViewModel: LocationViewModel by lazy { ViewModelProviders.of(this).get(LocationViewModel::class.java) }
+    private val locationViewModel: LocationViewModel by lazy {
+        ViewModelProviders.of(this).get(LocationViewModel::class.java)
+    }
+
+    private val userChatViewModel: UserChatViewModel by lazy {
+        ViewModelProviders.of(this).get(UserChatViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Foydalanuvchi Qo`shish"
@@ -38,14 +48,16 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
 
         readUsers()
     }
+
     // bazadagi foydalanuvchilarni olib keladi
     private fun readUsers() {
-        binding.listUser.adapter=adapter
-        binding.listUser.layoutManager=LinearLayoutManager(this)
+        binding.listUser.adapter = adapter
+        binding.listUser.layoutManager = LinearLayoutManager(this)
         userViewModel.users.observe(this, Observer {
             adapter.setdata(it)
         })
     }
+
     // bazaga foydalanuvchilarni qo`shadi
     private fun addUser() {
         binding.fab.setOnClickListener {
@@ -71,14 +83,14 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
 
     //foydalanuvchini o`chiradi
     override fun onclik(user: User) {
-            val alertDialog=AlertDialog.Builder(this)
+        val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle(user.login)
         alertDialog.setMessage("O`chirasizmi?")
-        alertDialog.setPositiveButton("Ha"){ dialogInterface: DialogInterface, i: Int ->
+        alertDialog.setPositiveButton("Ha") { dialogInterface: DialogInterface, i: Int ->
             userViewModel.deleteUser(user)
             locationViewModel.deleteLocation(Locationentity(login = user.login))
         }
-        alertDialog.setNegativeButton("Yo`q"){ dialogInterface: DialogInterface, i: Int -> }
+        alertDialog.setNegativeButton("Yo`q") { dialogInterface: DialogInterface, i: Int -> }
         alertDialog.show()
     }
 }
