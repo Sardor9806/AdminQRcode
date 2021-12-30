@@ -43,7 +43,7 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
         binding = ActivityUserAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userViewModel.readUser()
-
+        locationViewModel.readLocation()
         addUser()
 
         readUsers()
@@ -88,7 +88,16 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
         alertDialog.setMessage("O`chirasizmi?")
         alertDialog.setPositiveButton("Ha") { dialogInterface: DialogInterface, i: Int ->
             userViewModel.deleteUser(user)
-            locationViewModel.deleteLocation(Locationentity(login = user.login))
+            locationViewModel.location.observe(this, Observer {
+                it.forEach {
+                    if(it.login==user.login)
+                    {
+                        locationViewModel.deleteLocation(it)
+                    }
+                }
+            })
+
+
         }
         alertDialog.setNegativeButton("Yo`q") { dialogInterface: DialogInterface, i: Int -> }
         alertDialog.show()
