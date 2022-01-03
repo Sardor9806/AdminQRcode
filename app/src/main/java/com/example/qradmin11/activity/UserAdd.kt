@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,7 +15,6 @@ import com.example.qradmin11.databinding.ActivityUserAddBinding
 import com.example.qradmin11.databinding.AddUserDialogBinding
 import com.example.qradmin11.entity.Locationentity
 import com.example.qradmin11.entity.User
-import com.example.qradmin11.entity.UserChatAddEntity
 import com.example.qradmin11.viewModels.LocationViewModel
 import com.example.qradmin11.viewModels.UserChatViewModel
 import com.example.qradmin11.viewModels.UserViewModel
@@ -71,7 +71,8 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
                     userViewModel.insertUser(
                         User(
                             login = bind.addLogin.text.toString(),
-                            password = bind.addParol.text.toString()
+                            password = bind.addParol.text.toString(),
+                            status = "offline"
                         )
                     )
                     locationViewModel.insertLocation(Locationentity(login = bind.addLogin.text.toString()))
@@ -96,7 +97,7 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
                     }
                 }
             })
-
+            Toast.makeText(this, "Fodalanuvchi o`chirildi!!!", Toast.LENGTH_SHORT).show()
 
         }
         alertDialog.setNegativeButton("Yo`q") { dialogInterface: DialogInterface, i: Int -> }

@@ -11,13 +11,12 @@
         android:id="@+id/domen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="30dp"
+        android:layout_marginStart="35dp"
         android:text="Domen"
         android:textColor="@color/black"
         android:textSize="26dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </com.google.android.material.card.MaterialCardView>
