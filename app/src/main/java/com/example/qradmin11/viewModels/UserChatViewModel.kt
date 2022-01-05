@@ -15,7 +15,8 @@ class UserChatViewModel:ViewModel() {
     private val _messsage = MutableLiveData<List<UserChatAddEntity>>()
     val message: LiveData<List<UserChatAddEntity>>
         get() = _messsage
-    var t:String=""
+   private var t:String=""
+
     fun insertChatUser(userChatAddEntity: UserChatAddEntity) {
 
         val messageDb = FirebaseDatabase.getInstance().getReference("admin"+userChatAddEntity.login_chat.toString())
@@ -32,7 +33,7 @@ class UserChatViewModel:ViewModel() {
             }
     }
 
-    fun readLocation(readUser:String){
+    fun readMessage(readUser:String){
         t=readUser
         val messageDb = FirebaseDatabase.getInstance().getReference("admin"+readUser)
 

@@ -11,6 +11,10 @@ import com.example.qradmin11.adapter.MessageAdapter
 import com.example.qradmin11.databinding.ActivitySelectUserChattingBinding
 import com.example.qradmin11.entity.UserChatAddEntity
 import com.example.qradmin11.viewModels.UserChatViewModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class SelectUserChatting : AppCompatActivity(),MessageAdapter.MessageSetOnClickListener {
 
@@ -31,7 +35,7 @@ class SelectUserChatting : AppCompatActivity(),MessageAdapter.MessageSetOnClickL
         setContentView(binding.root)
         title = intent.getStringExtra("login")
         adapter= MessageAdapter(this,messageArray,this)
-        userChatViewModel.readLocation(intent.getStringExtra("login").toString())
+        userChatViewModel.readMessage(intent.getStringExtra("login").toString())
         readMessage()
         sendMessage()
 
@@ -58,7 +62,8 @@ class SelectUserChatting : AppCompatActivity(),MessageAdapter.MessageSetOnClickL
             userChatViewModel.insertChatUser(
                 UserChatAddEntity(
                     login_chat = intent.getStringExtra("login"),
-                    admin = binding.messageWriteEdt.text.toString()
+                    admin = binding.messageWriteEdt.text.toString(),
+                    message_status = "not seen"
                 )
             )
             binding.messageWriteEdt.text.clear()
@@ -73,5 +78,34 @@ class SelectUserChatting : AppCompatActivity(),MessageAdapter.MessageSetOnClickL
         }
         alertDialog.setNegativeButton("Yo`q"){ dialogInterface: DialogInterface, i: Int -> }
         alertDialog.show()
+    }
+
+    override fun onResume() {
+        seenMessage()
+        super.onResume()
+    }
+    fun seenMessage(){
+        val messageDb = FirebaseDatabase.getInstance().getReference("admin"+intent.getStringExtra("login"))
+        messageDb.addValueEventListener(object : ValueEventListener
+        {
+            override fun onDataChange(p0: DataSnapshot) {
+                if(p0.exists())
+                {
+                    p0.children.forEach {
+                        val item=it.getValue(UserChatAddEntity::class.java)
+                        if(item!!.admin=="")
+                        {
+                            var hashMap = HashMap<String,Any>()
+                            hashMap.put("message_status","seen")
+                            it.ref.updateChildren(hashMap)
+                        }
+                    }
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
     }
 }
