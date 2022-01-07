@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         locationgaRuxsat()
         domenQush()
         userQush()
-        userQayerda()
+      //  userQayerda()
         userChat()
     }
 
@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun userQayerda() {
-        binding.userQayerda.setOnClickListener {
-            startActivity(Intent(this,UserQayerda::class.java))
-        }
+//        binding.userQayerda.setOnClickListener {
+//            startActivity(Intent(this,UserQayerda::class.java))
+//        }
     }
 
     private fun userQush() {

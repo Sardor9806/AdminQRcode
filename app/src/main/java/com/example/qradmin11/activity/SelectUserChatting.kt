@@ -79,7 +79,7 @@ class SelectUserChatting : AppCompatActivity(),MessageAdapter.MessageSetOnClickL
         alertDialog.setNegativeButton("Yo`q"){ dialogInterface: DialogInterface, i: Int -> }
         alertDialog.show()
     }
-
+    
     override fun onResume() {
         seenMessage()
         super.onResume()
