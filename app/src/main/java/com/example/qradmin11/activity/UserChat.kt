@@ -38,7 +38,12 @@ class UserChat : AppCompatActivity(),UserAdapter.RecyclerOnClikListener {
         binding.selectChatUser.adapter = userAdapter
         binding.selectChatUser.layoutManager = LinearLayoutManager(this)
         user.users.observe(this, Observer {
-            userAdapter.setdata(it as List<User>)
+            var list:MutableList<User> = mutableListOf()
+            it.forEach {
+                if(it.password!=null)
+                    list.add(it)
+            }
+            userAdapter.setdata(list)
         })
     }
 

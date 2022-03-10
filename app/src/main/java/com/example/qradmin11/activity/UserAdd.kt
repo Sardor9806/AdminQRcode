@@ -54,7 +54,12 @@ class UserAdd : AppCompatActivity(), UserAdapter.RecyclerOnClikListener {
         binding.listUser.adapter = adapter
         binding.listUser.layoutManager = LinearLayoutManager(this)
         userViewModel.users.observe(this, Observer {
-            adapter.setdata(it)
+            var list:MutableList<User> = mutableListOf()
+            it.forEach {
+                if(it.password!=null)
+                    list.add(it)
+            }
+            adapter.setdata(list)
         })
     }
 
